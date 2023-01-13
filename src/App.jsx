@@ -1,4 +1,5 @@
 import React from 'react';
+import { useState } from 'react';
 
 function Header(props) {
     return (
@@ -47,26 +48,33 @@ function Article(props) {
     );
 }
 function App() {
+    const [mode, setMode] = useState('WELCOME');
     const topics = [
         { id: 1, title: 'html', body: 'html is...' },
         { id: 2, title: 'css', body: 'css is...' },
         { id: 3, title: 'javascript', body: 'js is...' },
     ];
+    let content = null;
+    if (mode === 'WELCOME') {
+        content = <Article title="Welcome" body="hello, WEB" />;
+    } else if (mode === 'READ') {
+        content = <Article title="Read" body="hello, Read" />;
+    }
     return (
         <div>
             <Header
                 title="react"
                 onChnageMode={function () {
-                    alert('헤더입니다');
+                    setMode('WELCOME');
                 }}
             />
             <Nav
                 topics={topics}
                 onChnageMode={(id) => {
-                    alert(id);
+                    setMode('READ');
                 }}
             />
-            <Article title="Welcome" body="hello, WEB" />
+            {content}
         </div>
     );
 }
