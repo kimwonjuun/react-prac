@@ -63,7 +63,7 @@ function App() {
     return (
         <div>
             <Header
-                title="react"
+                title="REACT"
                 onChnageMode={function () {
                     setMode('WELCOME');
                 }}
