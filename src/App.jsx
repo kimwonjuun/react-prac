@@ -2,7 +2,7 @@ import React from 'react';
 
 // 함수 안 {} 는 표현식으로 해석됨.
 function Header(props) {
-  console.log('props', props, props.title);
+  // console.log('props', props, props.title);
   return (
     <header>
       <h1>
@@ -29,11 +29,12 @@ function Nav({ topics }) {
     </nav>
   );
 }
-function Article({ title, body }) {
+function Article(props) {
+  console.log('props', props);
   return (
     <article>
-      <h2>{title}</h2>
-      {body}
+      <h2>{props.title}</h2>
+      {props.body}
     </article>
   );
 }
