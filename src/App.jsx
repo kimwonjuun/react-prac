@@ -6,24 +6,41 @@ function Header(props) {
   return (
     <header>
       <h1>
-        <a href="/">{props.title}</a>
+        <a
+          href="/"
+          onClick={function (event) {
+            event.preventDefault();
+            props.onChangeMode();
+          }}
+        >
+          {props.title}
+        </a>
       </h1>
     </header>
   );
 }
-function Nav({ topics }) {
-  console.log('topics', topics);
-  const lis = [
-    <li>
-      <a href="/read/1">html</a>
-    </li>,
-    <li>
-      <a href="/read/2">css</a>
-    </li>,
-    <li>
-      <a href="/read/3">js</a>
-    </li>,
-  ];
+function Nav({ topics, onChangeMode }) {
+  //   console.log('topics', topics);
+  const lis = [];
+
+  for (let i = 0; i < topics.length; i++) {
+    let t = topics[i];
+    // console.log(topics);
+    lis.push(
+      <li key={t.id}>
+        <a
+          id={t.id}
+          href={'/read/' + t.id}
+          onClick={(event) => {
+            event.preventDefault();
+            onChangeMode(event.target.id);
+          }}
+        >
+          {t.title}
+        </a>
+      </li>
+    );
+  }
   return (
     <nav>
       <ol>{lis}</ol>
@@ -48,8 +65,18 @@ function App() {
   ];
   return (
     <div>
-      <Header title="WEB" />
-      <Nav topics={topics} />
+      <Header
+        title="WEB"
+        onChangeMode={() => {
+          alert('Header');
+        }}
+      />
+      <Nav
+        topics={topics}
+        onChangeMode={(id) => {
+          alert(id);
+        }}
+      />
       <Article title="WELCOME" body="Hello, WEB" />
     </div>
   );
