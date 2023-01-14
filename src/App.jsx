@@ -12,6 +12,7 @@ function Header(props) {
   );
 }
 function Nav({ topics }) {
+  console.log('topics', topics);
   const lis = [
     <li>
       <a href="/read/1">html</a>
@@ -30,7 +31,7 @@ function Nav({ topics }) {
   );
 }
 function Article(props) {
-  console.log('props', props);
+  // console.log('props', props);
   return (
     <article>
       <h2>{props.title}</h2>
